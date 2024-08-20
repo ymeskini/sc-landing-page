@@ -1,5 +1,6 @@
 import * as React from "react";
 import { type HeadFC, type PageProps } from "gatsby";
+
 import { HeroSection } from "../components/sections/HeroSection";
 import Layout from "../components/layout";
 import { SEO } from "../components/layout/SEO";
