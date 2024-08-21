@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+
 import { H1, MediumText } from "../styles/TextStyles";
+import { Button } from "../button";
+import { Link } from "gatsby";
 
 export const HeroSection = () => {
   return (
@@ -14,6 +17,9 @@ export const HeroSection = () => {
             Don't skip design. Learn design and code, by building real apps with
             React and Swift. Complete courses about the best tools.
           </Description>
+          <Link to="/page-2">
+            <Button text="Get Pro Access" subText="$19 per month" />
+          </Link>
         </TextWrapper>
       </ContentWrapper>
     </Wrapper>
@@ -40,6 +46,4 @@ const Title = styled(H1)`
   color: var(--color-text);
 `;
 
-const Description = styled(MediumText)`
-
-`;
+const Description = styled(MediumText)``;
