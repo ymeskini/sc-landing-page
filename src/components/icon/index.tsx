@@ -1,8 +1,8 @@
 import React, { FC, CSSProperties, ComponentProps } from "react";
 import styled from "styled-components";
 
-import CreditCardIcon from "../../images/icons/credit.svg";
-import RingIcon from "../../images/icons/icon-ring.svg";
+import CreditCardIcon from "../../../static/images/icons/credit.svg";
+import RingIcon from "../../../static/images/icons/icon-ring.svg";
 
 const iconMap = {
   credit: <CreditCardIcon />,
