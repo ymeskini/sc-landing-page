@@ -56,5 +56,6 @@ export const GlobalStyles = createGlobalStyle`
   a {
     color: var(--color-primary);
     font-weight: bold;
+    text-decoration: none;
   }
 `;
