@@ -1,15 +1,17 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+import { Link } from "gatsby";
 
 import { H1, MediumText } from "../styles/TextStyles";
 import { Button } from "../button";
-import { Link } from "gatsby";
 import { Icon } from "../icon";
 import { Mockup } from "../mockup";
+import { WaveBackground } from "../backgrounds/WaveBackground";
 
 export const HeroSection = () => {
   return (
     <Wrapper>
+      <WaveBackground />
       <ContentWrapper>
         <TextWrapper>
           <Title>
@@ -36,6 +38,15 @@ export const HeroSection = () => {
     </Wrapper>
   );
 };
+
+const animation = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
 
 const StyledButton = styled(Button)`
   --icon-wrapper-background: linear-gradient(
@@ -71,7 +82,6 @@ const StyledFloattingIcon = styled(Icon)`
 `;
 
 const Wrapper = styled.div`
-  background: linear-gradient(180deg, #4316db 0%, #9076e7 100%);
   overflow: hidden;
 `;
 
@@ -91,6 +101,7 @@ const TextWrapper = styled.div`
 
 const Title = styled(H1)`
   color: var(--color-text);
+  animation: ${animation} 1s 0.5s both;
 `;
 
 const Description = styled(MediumText)``;

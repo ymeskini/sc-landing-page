@@ -9,7 +9,7 @@ export const MenuTooltip: FC<{
   isOpen: boolean;
 }> = ({ links, isOpen }) => {
   return (
-    <Wrapper isOpen={isOpen}>
+    <Wrapper $isOpen={isOpen}>
       <List>
         {links.map((link) => (
           <MenuLink
@@ -32,7 +32,7 @@ const List = styled.ul`
   flex-direction: column;
 `;
 
-const Wrapper = styled.div<{ isOpen: boolean }>`
+const Wrapper = styled.div<{ $isOpen: boolean }>`
   border-radius: 20px;
   background: rgba(15, 14, 71, 0.3);
   box-shadow: 0px 50px 100px rgba(0, 0, 0, 0.25),
@@ -45,11 +45,11 @@ const Wrapper = styled.div<{ isOpen: boolean }>`
   right: 30px;
   z-index: 1;
   transition: 0.3s ease-in-out;
-  ${({ isOpen }) => css`
-    transform: ${isOpen
+  ${({ $isOpen }) => css`
+    transform: ${$isOpen
       ? "skewY(0deg) rotate(0deg) translateY(0px)"
       : "skewY(-5deg) rotate(5deg) translateY(-30px)"};
-    opacity: ${isOpen ? 1 : 0};
-    visibility: ${isOpen ? "visible" : "hidden"};
+    opacity: ${$isOpen ? 1 : 0};
+    visibility: ${$isOpen ? "visible" : "hidden"};
   `}
 `;
