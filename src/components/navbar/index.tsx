@@ -3,9 +3,8 @@ import { Link } from "gatsby";
 import styled from "styled-components";
 
 import Logo from "../../../static/images/logos/logo.svg";
-import { ListElement, MenuLink } from "./MenuLink";
-import { MenuTooltip } from "../menu-tooltip";
-import { Icon } from "../icon";
+import { MenuLink } from "./MenuLink";
+import { Popover } from "../popover";
 
 const navLinks = [
   { label: "Courses", href: "/courses", icon: "courses" },
@@ -14,27 +13,7 @@ const navLinks = [
   { href: "/search", icon: "search" },
 ] as const;
 
-const profileLinks = [
-  {
-    icon: "profile",
-    label: "Profile",
-    href: "/profile",
-  },
-  {
-    icon: "settings",
-    label: "Settings",
-    href: "/settings",
-  },
-  {
-    icon: "signout",
-    label: "Sign out",
-    href: "/signout",
-  },
-] as const;
-
 export const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <Wrapper aria-label="Design Code Navigation">
       <Link to="/">
@@ -42,22 +21,13 @@ export const Navbar = () => {
       </Link>
       <List role="menubar">
         {navLinks.map((link) => (
-          <MenuLink {...link} />
+          <MenuLink {...link} key={link.href} />
         ))}
-        <AccountButton onClick={() => setIsOpen((prev) => !prev)}>
-          <Icon icon="account" />
-        </AccountButton>
+        <Popover />
       </List>
-      <MenuTooltip isOpen={isOpen} links={profileLinks} />
     </Wrapper>
   );
 };
-
-const AccountButton = styled(ListElement).attrs({ as: "button" })`
-  border: none;
-  background: transparent;
-  padding-left: 0;
-`;
 
 const StyledLogo = styled(Logo)`
   position: absolute;
