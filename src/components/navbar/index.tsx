@@ -1,42 +1,40 @@
+import React, { useState } from "react";
 import { Link } from "gatsby";
-import React, { FC } from "react";
-import styled, { CSSProperties } from "styled-components";
+import styled from "styled-components";
 
-import { Icon, IconName } from "../icon";
 import Logo from "../../../static/images/logos/logo.svg";
+import { ListElement, MenuLink } from "./MenuLink";
+import { MenuTooltip } from "../menu-tooltip";
+import { Icon } from "../icon";
 
 const navLinks = [
   { label: "Courses", href: "/courses", icon: "courses" },
   { label: "Tutorials", href: "/tutorials", icon: "tutorials" },
   { label: "Pricing", href: "/pricing", icon: "pricing" },
-  { label: "", href: "/search", icon: "search" },
-  { label: "", href: "/account", icon: "account" },
+  { href: "/search", icon: "search" },
 ] as const;
 
-const MenuLink: FC<{
-  href: string;
-  icon: IconName;
-  label?: string;
-}> = ({ href, icon, label }) => {
-  return (
-    <ListElement
-      style={
-        {
-          "--padding": label ? "10px" : "0",
-        } as CSSProperties
-      }
-      role="none"
-      key={href}
-    >
-      <StyledLink role="menuitem" to={href}>
-        <Icon icon={icon} />
-        <span>{label}</span>
-      </StyledLink>
-    </ListElement>
-  );
-};
+const profileLinks = [
+  {
+    icon: "profile",
+    label: "Profile",
+    href: "/profile",
+  },
+  {
+    icon: "settings",
+    label: "Settings",
+    href: "/settings",
+  },
+  {
+    icon: "signout",
+    label: "Sign out",
+    href: "/signout",
+  },
+] as const;
 
 export const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <Wrapper aria-label="Design Code Navigation">
       <Link to="/">
@@ -44,17 +42,22 @@ export const Navbar = () => {
       </Link>
       <List role="menubar">
         {navLinks.map((link) => (
-          <MenuLink
-            key={link.href}
-            href={link.href}
-            icon={link.icon}
-            label={link.label}
-          />
+          <MenuLink {...link} />
         ))}
+        <AccountButton onClick={() => setIsOpen((prev) => !prev)}>
+          <Icon icon="account" />
+        </AccountButton>
       </List>
+      <MenuTooltip isOpen={isOpen} links={profileLinks} />
     </Wrapper>
   );
 };
+
+const AccountButton = styled(ListElement).attrs({ as: "button" })`
+  border: none;
+  background: transparent;
+  padding-left: 0;
+`;
 
 const StyledLogo = styled(Logo)`
   position: absolute;
@@ -68,26 +71,6 @@ const List = styled.ul`
   display: flex;
   margin-left: auto;
   gap: 30px;
-`;
-
-const StyledLink = styled(Link)`
-  display: flex;
-  align-items: center;
-  color: rgba(255, 255, 255, 0.7);
-`;
-
-const ListElement = styled.li`
-  display: flex;
-  gap: 10px;
-  padding-right: var(--padding);
-  transition: 0.5s ease-out;
-  border-radius: 10px;
-
-  &:hover {
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0px 0px 0px 0.5px rgba(255, 255, 255, 0.2) inset,
-      0px 10px 20px 0px rgba(0, 0, 0, 0.1);
-  }
 `;
 
 const Wrapper = styled.nav`

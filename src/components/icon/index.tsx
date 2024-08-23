@@ -8,6 +8,9 @@ import PricingIcon from "../../../static/images/icons/pricing.svg";
 import TutorialsIcon from "../../../static/images/icons/tutorials.svg";
 import AccountIcon from "../../../static/images/icons/account.svg";
 import SearchIcon from "../../../static/images/icons/search.svg";
+import SettingsIcon from "../../../static/images/icons/settings.svg";
+import SignoutIcon from "../../../static/images/icons/signout.svg";
+import ProfileIcon from "../../../static/images/icons/profile.svg";
 
 const iconMap = {
   credit: <CreditCardIcon />,
@@ -17,6 +20,9 @@ const iconMap = {
   tutorials: <TutorialsIcon />,
   account: <AccountIcon />,
   search: <SearchIcon />,
+  settings: <SettingsIcon />,
+  signout: <SignoutIcon />,
+  profile: <ProfileIcon />,
 };
 
 export type IconName = keyof typeof iconMap;
