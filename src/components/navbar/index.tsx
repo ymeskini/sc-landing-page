@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
 
 import Logo from "../../../static/images/logos/logo.svg";
-import { MenuLink } from "./MenuLink";
+import { ListElement, MenuLink } from "./MenuLink";
 import { Popover } from "../popover";
 
 const navLinks = [
@@ -23,8 +23,11 @@ export const Navbar = () => {
         {navLinks.map((link) => (
           <MenuLink {...link} key={link.href} />
         ))}
-        <Popover />
+        <Popover icon="account" />
       </List>
+      <HamburgerWrapper>
+        <Popover icon="hamburger" />
+      </HamburgerWrapper>
     </Wrapper>
   );
 };
@@ -49,4 +52,24 @@ const Wrapper = styled.nav`
   top: 60px;
   position: absolute;
   padding: 0 30px;
+
+  @media (max-width: 760px) {
+    & ${List} > ${ListElement} {
+      display: none;
+    }
+    top: 30px;
+  }
+
+  @media (max-width: 450px) {
+    top: 20px;
+    padding: 0 20px;
+  }
+`;
+
+const HamburgerWrapper = styled.div`
+  display: none;
+
+  @media (max-width: 760px) {
+    display: block;
+  }
 `;

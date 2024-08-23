@@ -11,6 +11,7 @@ import SearchIcon from "../../../static/images/icons/search.svg";
 import SettingsIcon from "../../../static/images/icons/settings.svg";
 import SignoutIcon from "../../../static/images/icons/signout.svg";
 import ProfileIcon from "../../../static/images/icons/profile.svg";
+import HamburgerIcon from "../../../static/images/icons/hamburger.svg";
 
 const iconMap = {
   credit: <CreditCardIcon />,
@@ -23,6 +24,7 @@ const iconMap = {
   settings: <SettingsIcon />,
   signout: <SignoutIcon />,
   profile: <ProfileIcon />,
+  hamburger: <HamburgerIcon />,
 };
 
 export type IconName = keyof typeof iconMap;

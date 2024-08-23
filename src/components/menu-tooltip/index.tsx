@@ -1,28 +1,32 @@
-import React, { FC } from "react";
+import React, { FC, forwardRef } from "react";
 import styled, { css } from "styled-components";
 
 import { MenuLink } from "../navbar/MenuLink";
 import { IconName } from "../icon";
 
-export const MenuTooltip: FC<{
+type MenuTooltipProps = {
   links: readonly { icon: IconName; label: string; href: string }[];
   isOpen: boolean;
-}> = ({ links, isOpen }) => {
-  return (
-    <Wrapper $isOpen={isOpen}>
-      <List>
-        {links.map((link) => (
-          <MenuLink
-            key={link.href}
-            href={link.href}
-            icon={link.icon}
-            label={link.label}
-          />
-        ))}
-      </List>
-    </Wrapper>
-  );
 };
+
+export const MenuTooltip = forwardRef<HTMLDivElement, MenuTooltipProps>(
+  ({ links, isOpen }, ref) => {
+    return (
+      <Wrapper ref={ref} $isOpen={isOpen}>
+        <List>
+          {links.map((link) => (
+            <MenuLink
+              key={link.href}
+              href={link.href}
+              icon={link.icon}
+              label={link.label}
+            />
+          ))}
+        </List>
+      </Wrapper>
+    );
+  }
+);
 
 const List = styled.ul`
   list-style: none;

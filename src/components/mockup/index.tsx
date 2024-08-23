@@ -19,6 +19,15 @@ const Wrapper = styled.div`
   --border-radius-small: calc(var(--border-radius) / 2);
   perspective: 5000px;
 
+  @media (max-width: 760px) {
+    transform: scale(0.6);
+    transform-origin: top left;
+  }
+
+  @media (max-width: 450px) {
+    transform: scale(0.4);
+  }
+
   & > div {
     transform: rotateY(-20deg) rotateX(20deg);
     transform-origin: bottom left;
