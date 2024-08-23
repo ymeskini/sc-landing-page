@@ -3,10 +3,20 @@ import styled from "styled-components";
 
 import CreditCardIcon from "../../../static/images/icons/credit.svg";
 import RingIcon from "../../../static/images/icons/icon-ring.svg";
+import CoursesIcon from "../../../static/images/icons/courses.svg";
+import PricingIcon from "../../../static/images/icons/pricing.svg";
+import TutorialsIcon from "../../../static/images/icons/tutorials.svg";
+import AccountIcon from "../../../static/images/icons/account.svg";
+import SearchIcon from "../../../static/images/icons/search.svg";
 
 const iconMap = {
   credit: <CreditCardIcon />,
   ring: <RingIcon />,
+  courses: <CoursesIcon />,
+  pricing: <PricingIcon />,
+  tutorials: <TutorialsIcon />,
+  account: <AccountIcon />,
+  search: <SearchIcon />,
 };
 
 export type IconName = keyof typeof iconMap;

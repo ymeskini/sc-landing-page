@@ -1,5 +1,5 @@
 import React, { FC, PropsWithChildren } from "react";
-import { useSiteMetadata } from "../../hooks/useSiteMetadata";
+import { useSiteMetadata } from "../hooks/useSiteMetadata";
 
 export const SEO: FC<
   PropsWithChildren<{

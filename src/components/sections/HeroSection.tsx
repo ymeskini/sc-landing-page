@@ -63,7 +63,7 @@ const StyledFloattingIcon = styled(Icon)`
   position: absolute;
   top: -15px;
   left: -11px;
-  background: none;
+  background: transparent;
   transition: var(--transition);
   ${StyledButton}:hover & {
     transform: rotate(30deg) scale(1.2) translate(1px, 1px);
