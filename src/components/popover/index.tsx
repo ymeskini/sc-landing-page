@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+
 import { MenuTooltip } from "../menu-tooltip";
 import { Icon, IconName } from "../icon";
 import { ListElement } from "../navbar/MenuLink";
@@ -55,23 +56,21 @@ export const Popover: FC<{ icon: IconName }> = ({ icon }) => {
   }, [isOpen]);
 
   return (
-    <>
+    <AccountButton
+      ref={buttonRef}
+      onClick={(e) => {
+        e.stopPropagation();
+        setIsOpen((prev) => !prev);
+      }}
+    >
+      <Icon icon={icon} />
       <MenuTooltip ref={menuRef} isOpen={isOpen} links={profileLinks} />
-      <AccountButton
-        ref={buttonRef}
-        onClick={(e) => {
-          e.stopPropagation();
-          setIsOpen((prev) => !prev);
-        }}
-      >
-        <Icon icon={icon} />
-      </AccountButton>
-    </>
+    </AccountButton>
   );
 };
 
 const AccountButton = styled(ListElement).attrs({ as: "button" })`
   border: none;
   background: transparent;
-  padding-left: 0;
+  position: relative;
 `;

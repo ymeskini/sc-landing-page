@@ -38,6 +38,7 @@ export const GlobalStyles = createGlobalStyle`
     --color-text: hsla(0, 0%, 100%, 1);
     --color-background-dark: hsla(240, 39%, 20%, 1);
     --color-background: hsla(222, 100%, 97%, 1);
+    --color-text-secondary: hsla(0, 0%, 100%, 0.7);
   }
 
   #gatsby-focus-wrapper {
@@ -46,11 +47,7 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     font-family: var(--font-family);
-    background: var(--color-background);
-
-    @media (prefers-color-scheme: dark) {
-      background: var(--color-background-dark);
-    }
+    background: white;
   }
 
   a {

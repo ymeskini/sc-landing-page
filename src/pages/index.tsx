@@ -4,9 +4,7 @@ import { type HeadFC, type PageProps } from "gatsby";
 import { HeroSection } from "../components/sections/HeroSection";
 import { SEO } from "../components/SEO";
 
-const IndexPage: React.FC<PageProps> = () => {
-  return <HeroSection />;
-};
+const IndexPage: React.FC<PageProps> = () => <HeroSection />;
 
 export default IndexPage;
 

@@ -12,7 +12,13 @@ type MenuTooltipProps = {
 export const MenuTooltip = forwardRef<HTMLDivElement, MenuTooltipProps>(
   ({ links, isOpen }, ref) => {
     return (
-      <Wrapper ref={ref} $isOpen={isOpen}>
+      <Wrapper
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+        ref={ref}
+        $isOpen={isOpen}
+      >
         <List>
           {links.map((link) => (
             <MenuLink
@@ -45,8 +51,9 @@ const Wrapper = styled.div<{ $isOpen: boolean }>`
   border: none;
   padding: 20px;
   position: absolute;
-  top: 60px;
-  right: 30px;
+  width: 180px;
+  top: 70px;
+  right: 0;
   z-index: 1;
   transition: 0.3s ease-in-out;
   ${({ $isOpen }) => css`

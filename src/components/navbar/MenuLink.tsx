@@ -1,4 +1,4 @@
-import React, { FC, CSSProperties } from "react";
+import React, { FC } from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
 
@@ -10,33 +10,29 @@ export const MenuLink: FC<{
   label?: string;
 }> = ({ href, icon, label }) => {
   return (
-    <ListElement
-      style={
-        {
-          "--padding": label ? "10px" : "0",
-        } as CSSProperties
-      }
-      role="none"
-      key={href}
-    >
+    <ListElement role="none" key={href}>
       <StyledLink role="menuitem" to={href}>
         <Icon icon={icon} />
-        <span>{label}</span>
+        {label && <Label>{label}</Label>}
       </StyledLink>
     </ListElement>
   );
 };
 
+const Label = styled.span`
+  text-align: left;
+`;
+
 const StyledLink = styled(Link)`
   display: flex;
   align-items: center;
   color: rgba(255, 255, 255, 0.7);
+  gap: 10px;
 `;
 
 export const ListElement = styled.li`
   display: flex;
-  gap: 10px;
-  padding-right: var(--padding);
+  padding: 10px;
   transition: 0.5s ease-out;
   border-radius: 10px;
 

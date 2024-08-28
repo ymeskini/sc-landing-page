@@ -12,6 +12,7 @@ import SettingsIcon from "../../../static/images/icons/settings.svg";
 import SignoutIcon from "../../../static/images/icons/signout.svg";
 import ProfileIcon from "../../../static/images/icons/profile.svg";
 import HamburgerIcon from "../../../static/images/icons/hamburger.svg";
+import ReactIcon from "../../../static/images/logos/react-logo.svg";
 
 const iconMap = {
   credit: <CreditCardIcon />,
@@ -25,42 +26,48 @@ const iconMap = {
   signout: <SignoutIcon />,
   profile: <ProfileIcon />,
   hamburger: <HamburgerIcon />,
+  react: <ReactIcon />,
 };
 
 export type IconName = keyof typeof iconMap;
 
 const iconSizes = {
   small: 30,
-  medium: 45,
-  large: 100,
+  medium: 40,
+  large: 60,
 };
 
 export interface IconProps extends ComponentProps<"div"> {
   icon: IconName;
   size?: keyof typeof iconSizes;
   iconWrapperBackground?: string;
+  rounded?: boolean;
 }
 
-const IconWrapper = styled.div`
-  width: var(--size);
-  height: var(--size);
+const IconWrapper = styled.div<{ $rounded: boolean }>`
   background: var(--icon-wrapper-background);
-  border-radius: 50%;
   display: flex;
-  justify-content: center;
   align-items: center;
   pointer-events: none;
+  border-radius: ${({ $rounded }) => ($rounded ? "50%" : "0")};
+
+  svg {
+    width: var(--size);
+    height: var(--size);
+  }
 `;
 
 export const Icon: FC<IconProps> = ({
   icon,
   size,
   iconWrapperBackground,
+  rounded,
   ...wrapperProps
 }) => {
   const { style, ...rest } = wrapperProps;
   return (
     <IconWrapper
+      $rounded={rounded || false}
       style={
         {
           "--size": `${iconSizes[size || "medium"]}px`,
