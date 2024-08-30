@@ -14,39 +14,44 @@ import { PurchaseButton } from "../components/button/PurchaseButton";
 import { Card } from "../components/card";
 import { StaticImage } from "gatsby-plugin-image";
 import { FlutterBuild } from "../components/FlutterBuild";
+import { useWindowSize } from "react-use";
 
-const CoursePage: React.FC<PageProps> = () => (
-  <Wrapper>
-    <HeroWrapper>
-      <CourseCard
-        image={
-          <StaticImage
-            alt="card image"
-            src="../../static/images/illustrations/illustration-1.png"
-          />
-        }
-      />
-      <ContentWrapper>
-        <Logo size="large" icon="react" />
-        <Title>Build a web app with React Hooks</Title>
-        <Subtitle>20 Sections - 3 hours of videos</Subtitle>
-        <Description>
-          Learn how to build the new DesignCode site with React Hooks
-        </Description>
-        <AuthorWrapper>
-          <AuthorImage src="/images/avatars/Meng.png" alt="Author Image" />
-          <Subtitle>Taught By Youssef Meskini</Subtitle>
-        </AuthorWrapper>
-        <PurchaseButton />
-        <SmallDescription>
-          Purchase includes access to 30 courses. Over 80 hours of content,
-          including 12 hours for SwiftUI, for iOS 13 and iOS 14.
-        </SmallDescription>
-      </ContentWrapper>
-    </HeroWrapper>
-    <FlutterBuild />
-  </Wrapper>
-);
+const CoursePage: React.FC<PageProps> = () => {
+  const { width } = useWindowSize();
+
+  return (
+    <Wrapper>
+      <HeroWrapper>
+        <CourseCard
+          image={
+            <StaticImage
+              alt="card image"
+              src="../../static/images/illustrations/illustration-1.png"
+            />
+          }
+        />
+        <ContentWrapper>
+          <Logo size="large" icon="react" />
+          <Title>Build a web app with React Hooks</Title>
+          <Subtitle>20 Sections - 3 hours of videos</Subtitle>
+          <Description>
+            Learn how to build the new DesignCode site with React Hooks
+          </Description>
+          <AuthorWrapper>
+            <AuthorImage src="/images/avatars/Meng.png" alt="Author Image" />
+            <Subtitle>Taught By Youssef Meskini</Subtitle>
+          </AuthorWrapper>
+          <PurchaseButton />
+          <SmallDescription>
+            Purchase includes access to 30 courses. Over 80 hours of content,
+            including 12 hours for SwiftUI, for iOS 13 and iOS 14.
+          </SmallDescription>
+        </ContentWrapper>
+      </HeroWrapper>
+      <FlutterBuild />
+    </Wrapper>
+  );
+};
 
 const CourseCard = styled(Card)`
   margin-top: 40px;

@@ -1,11 +1,14 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { useMouse } from "react-use";
+import { useMouseHovered } from "react-use";
 
 export const FlutterBuild = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const { elX, elY, elW, elH } = useMouse(ref);
+  const { elX, elY, elW, elH } = useMouseHovered(ref, {
+    bound: true,
+    whenHovered: true,
+  });
 
   const centerX = elX - elW / 2;
   const centerY = elY - elH / 2;
