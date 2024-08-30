@@ -37,6 +37,13 @@ const StyledLogo = styled(Logo)`
   top: 0;
   bottom: 0;
   margin: auto;
+  width: 100px;
+  height: 100px;
+
+  @media (max-width: 760px) {
+    width: 80px;
+    height: 80px;
+  }
 `;
 
 const List = styled.ul`

@@ -13,6 +13,7 @@ import {
 import { PurchaseButton } from "../components/button/PurchaseButton";
 import { Card } from "../components/card";
 import { StaticImage } from "gatsby-plugin-image";
+import { FlutterBuild } from "../components/FlutterBuild";
 
 const CoursePage: React.FC<PageProps> = () => (
   <Wrapper>
@@ -43,6 +44,7 @@ const CoursePage: React.FC<PageProps> = () => (
         </SmallDescription>
       </ContentWrapper>
     </HeroWrapper>
+    <FlutterBuild />
   </Wrapper>
 );
 
