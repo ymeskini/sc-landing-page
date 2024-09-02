@@ -13,7 +13,7 @@ import {
 import { PurchaseButton } from "../components/button/PurchaseButton";
 import { Card } from "../components/card";
 import { StaticImage } from "gatsby-plugin-image";
-import { FlutterBuild } from "../components/FlutterBuild";
+import { FlutterBuild } from "../components/flutter-build";
 import { useWindowSize } from "react-use";
 
 const CoursePage: React.FC<PageProps> = () => {
@@ -114,6 +114,11 @@ const Title = styled(H1)`
 const SmallDescription = styled(SmallText)`
   max-width: 280px;
   color: var(--color-text-secondary);
+`;
+
+const FlutterWrapper = styled.div`
+
+  margin: 100px auto;
 `;
 
 export default CoursePage;
