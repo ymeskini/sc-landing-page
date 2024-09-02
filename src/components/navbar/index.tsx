@@ -7,10 +7,10 @@ import { ListElement, MenuLink } from "./MenuLink";
 import { Popover } from "../popover";
 
 const navLinks = [
-  { label: "Courses", href: "/courses", icon: "courses" },
-  { label: "Tutorials", href: "/tutorials", icon: "tutorials" },
-  { label: "Pricing", href: "/pricing", icon: "pricing" },
-  { href: "/search", icon: "search" },
+  { label: "Courses", href: "/course", icon: "courses" },
+  { label: "Tutorials", href: "#", icon: "tutorials" },
+  { label: "Pricing", href: "#", icon: "pricing" },
+  { href: "#", icon: "search" },
 ] as const;
 
 export const Navbar = () => {

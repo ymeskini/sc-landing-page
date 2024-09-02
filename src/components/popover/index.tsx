@@ -9,17 +9,17 @@ const profileLinks = [
   {
     icon: "profile",
     label: "Profile",
-    href: "/profile",
+    href: "#",
   },
   {
     icon: "settings",
     label: "Settings",
-    href: "/settings",
+    href: "#",
   },
   {
     icon: "signout",
     label: "Sign out",
-    href: "/signout",
+    href: "#",
   },
 ] as const;
 

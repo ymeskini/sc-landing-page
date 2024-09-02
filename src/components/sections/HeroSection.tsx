@@ -20,7 +20,7 @@ export const HeroSection = () => {
             Don't skip design. Learn design and code, by building real apps with
             React and Swift. Complete courses about the best tools.
           </Description>
-          <Link to="/page-2">
+          <Link to="/course">
             <PurchaseButton />
           </Link>
         </TextWrapper>
