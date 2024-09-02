@@ -14,15 +14,16 @@ export const SectionRow: FC<{
   duration: string;
 }> = ({ description, index, duration, title }) => {
   const timestampAria = formatTimestamp(duration);
+  const randomProgress = Math.floor(Math.random() * 100);
   return (
     <Wrapper>
       <Index>{index}</Index>
       <TextWrapper>
         <Title>{title}</Title>
         <ProgressBar
-          value="50"
+          value={randomProgress}
           max="100"
-          aria-label={`Progress of the video at 50%`}
+          aria-label={`Progress of the video at ${randomProgress}%`}
         />
         <Description>{description}</Description>
       </TextWrapper>
@@ -41,7 +42,6 @@ const Wrapper = styled.li`
   background-blend-mode: overlay;
   mix-blend-mode: normal;
   border-radius: 10px;
-
   transition: 0.8s cubic-bezier(0.075, 0.82, 0.165, 1);
 
   &:hover {
@@ -75,7 +75,6 @@ const TextWrapper = styled.div`
 
 const Title = styled(Caption)`
   max-width: 180px;
-  color: #3913b8;
 `;
 
 const ProgressBar = styled.progress`
@@ -84,7 +83,6 @@ const ProgressBar = styled.progress`
     -moz-appearance: none;
     appearance: none;
     border: none;
-
     width: 170px;
     height: 5px;
   }
@@ -96,12 +94,12 @@ const ProgressBar = styled.progress`
   }
 
   &::-webkit-progress-value {
-    background-color: green;
+    background-color: rgb(57, 19, 184);
     border-radius: 8px;
   }
 
   &::-moz-progress-bar {
-    background-color: green;
+    background-color: rgb(57, 19, 184);
   }
 `;
 
