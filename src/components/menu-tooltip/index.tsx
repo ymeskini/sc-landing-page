@@ -1,4 +1,4 @@
-import React, { FC, forwardRef } from "react";
+import React, { forwardRef } from "react";
 import styled, { css } from "styled-components";
 
 import { MenuLink } from "../navbar/MenuLink";
@@ -22,7 +22,7 @@ export const MenuTooltip = forwardRef<HTMLDivElement, MenuTooltipProps>(
         <List>
           {links.map((link) => (
             <MenuLink
-              key={link.href}
+              key={link.label}
               href={link.href}
               icon={link.icon}
               label={link.label}

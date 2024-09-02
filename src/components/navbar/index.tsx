@@ -21,7 +21,7 @@ export const Navbar = () => {
       </Link>
       <List role="menubar">
         {navLinks.map((link) => (
-          <MenuLink {...link} key={link.href} />
+          <MenuLink {...link} key={link.icon} />
         ))}
         <Popover icon="account" />
       </List>

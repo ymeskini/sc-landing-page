@@ -1,7 +1,7 @@
 import React, { memo, useMemo, useRef } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { useMouseHovered } from "react-use";
+import { useMouseHovered, useWindowSize } from "react-use";
 
 import { Backgrounds } from "./backgrounds";
 import { Circles } from "./circles";
@@ -19,15 +19,20 @@ const FlutterBuildC = () => {
     bound: true,
     whenHovered: true,
   });
+  const { width } = useWindowSize();
 
   const centerX = useMemo(() => elX - elW / 2, [elX, elW]);
   const centerY = useMemo(() => elY - elH / 2, [elY, elH]);
+  const wrapperX = useMemo(
+    () => Math.max(0, Math.min(centerX, width)) / 20,
+    [centerX, width]
+  );
 
   return (
     <Wrapper ref={ref}>
       <motion.div
         animate={{
-          x: Math.max(0, Math.min(centerX, window.innerWidth)) / 20,
+          x: wrapperX,
           y: centerY / 20,
         }}
       >

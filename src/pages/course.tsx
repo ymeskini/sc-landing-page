@@ -1,6 +1,9 @@
 import * as React from "react";
 import { type HeadFC, type PageProps } from "gatsby";
+import { StaticImage } from "gatsby-plugin-image";
 import styled from "styled-components";
+import { useWindowSize } from "react-use";
+import { graphql } from "gatsby";
 
 import { SEO } from "../components/SEO";
 import { Icon } from "../components/icon";
@@ -12,12 +15,49 @@ import {
 } from "../components/styles/TextStyles";
 import { PurchaseButton } from "../components/button/PurchaseButton";
 import { Card } from "../components/card";
-import { StaticImage } from "gatsby-plugin-image";
 import { FlutterBuild } from "../components/flutter-build";
-import { useWindowSize } from "react-use";
+import { GridSection } from "../components/sections/GridSection";
 
-const CoursePage: React.FC<PageProps> = () => {
+export const query = graphql`
+  query CoursePageQuery {
+    allContentfulCourse {
+      edges {
+        node {
+          title
+          description
+          sections {
+            title
+            description
+            duration
+          }
+        }
+      }
+    }
+  }
+`;
+
+export type GraphqlData = {
+  allContentfulCourse: {
+    edges: {
+      node: {
+        title: string;
+        description: string;
+        sections: {
+          title: string;
+          description: string;
+          duration: string;
+        }[];
+      };
+    }[];
+  };
+};
+
+const CoursePage: React.FC<PageProps<GraphqlData>> = ({ data }) => {
   const { width } = useWindowSize();
+  const {
+    allContentfulCourse: { edges },
+  } = data;
+  const { title, description, sections } = edges[0].node;
 
   return (
     <Wrapper>
@@ -32,11 +72,9 @@ const CoursePage: React.FC<PageProps> = () => {
         />
         <ContentWrapper>
           <Logo size="large" icon="react" />
-          <Title>Build a web app with React Hooks</Title>
+          <Title>{title}</Title>
           <Subtitle>20 Sections - 3 hours of videos</Subtitle>
-          <Description>
-            Learn how to build the new DesignCode site with React Hooks
-          </Description>
+          <Description>{description}</Description>
           <AuthorWrapper>
             <AuthorImage src="/images/avatars/Meng.png" alt="Author Image" />
             <Subtitle>Taught By Youssef Meskini</Subtitle>
@@ -48,7 +86,11 @@ const CoursePage: React.FC<PageProps> = () => {
           </SmallDescription>
         </ContentWrapper>
       </HeroWrapper>
-      <FlutterBuild />
+      <Divider />
+      <GridSection sections={sections} />
+      <FlutterWrapper $width={width}>
+        <FlutterBuild />
+      </FlutterWrapper>
     </Wrapper>
   );
 };
@@ -64,6 +106,7 @@ const Wrapper = styled.div`
 
 const HeroWrapper = styled.div`
   padding: 200px 30px;
+  padding-bottom: 0;
   display: flex;
   max-width: 1234px;
   gap: 60px;
@@ -116,9 +159,23 @@ const SmallDescription = styled(SmallText)`
   color: var(--color-text-secondary);
 `;
 
-const FlutterWrapper = styled.div`
-
+const FlutterWrapper = styled.div<{ $width: number }>`
   margin: 100px auto;
+
+  @media (max-width: 1440px) {
+    transform-origin: top left;
+    transform: scale(${({ $width }) => $width / 1440});
+  }
+`;
+
+const Divider = styled.hr`
+  display: block;
+  width: 300px;
+  border: 0;
+  padding: 0;
+  height: 0.5px;
+  background: rgba(255, 255, 255, 0.3);
+  margin: 60px auto 32px;
 `;
 
 export default CoursePage;
