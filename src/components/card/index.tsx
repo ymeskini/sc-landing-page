@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import React, { FC, ReactNode, useState } from "react";
 import styled from "styled-components";
 import { Circles } from "../animations/Circles";
 
@@ -6,10 +6,16 @@ export const Card: FC<{ className?: string; image?: ReactNode }> = ({
   image,
   className,
 }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <Wrapper className={className}>
+    <Wrapper
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className={className}
+    >
       <AnimationWrapper>
-        <Circles />
+        <Circles isHovered={isHovered} />
       </AnimationWrapper>
       {image}
     </Wrapper>

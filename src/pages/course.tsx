@@ -1,9 +1,8 @@
 import * as React from "react";
-import { type HeadFC, type PageProps } from "gatsby";
-import { StaticImage } from "gatsby-plugin-image";
+import { type HeadFC, type PageProps, graphql } from "gatsby";
+import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image";
 import styled from "styled-components";
 import { useWindowSize } from "react-use";
-import { graphql } from "gatsby";
 
 import { SEO } from "../components/SEO";
 import { Icon } from "../components/icon";
@@ -25,6 +24,13 @@ export const query = graphql`
         node {
           title
           description
+          illustration {
+            gatsbyImageData(
+              layout: CONSTRAINED
+              placeholder: BLURRED
+              formats: [AUTO, WEBP, AVIF]
+            )
+          }
           sections {
             title
             description
@@ -42,6 +48,9 @@ export type GraphqlData = {
       node: {
         title: string;
         description: string;
+        illustration: {
+          gatsbyImageData: IGatsbyImageData;
+        };
         sections: {
           title: string;
           description: string;
@@ -57,18 +66,14 @@ const CoursePage: React.FC<PageProps<GraphqlData>> = ({ data }) => {
   const {
     allContentfulCourse: { edges },
   } = data;
-  const { title, description, sections } = edges[0].node;
+  const { title, description, sections, illustration } = edges[0].node;
+  const image = getImage(illustration);
 
   return (
     <Wrapper>
       <HeroWrapper>
         <CourseCard
-          image={
-            <StaticImage
-              alt="card image"
-              src="../../static/images/illustrations/illustration-1.png"
-            />
-          }
+          image={<GatsbyImage alt="React Course Image" image={image!} />}
         />
         <ContentWrapper>
           <Logo size="large" icon="react" />

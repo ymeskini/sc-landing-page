@@ -1,13 +1,9 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import styled, { keyframes } from "styled-components";
 
-export const Circles = () => {
-  const [isHovered, setIsHovered] = useState(false);
+export const Circles: FC<{ isHovered: boolean }> = ({ isHovered }) => {
   return (
-    <Wrapper
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+    <Wrapper>
       <Circle $isHovered={isHovered} />
       <Circle2 $isHovered={isHovered} />
     </Wrapper>
@@ -49,7 +45,7 @@ const Circle = styled.figure<{ $isHovered: boolean }>`
 
 const Circle2 = styled(Circle)`
   width: 260px;
-  height: 260px;;
+  height: 260px;
   border-radius: 50%;
   left: calc(50% - 260px / 2);
   top: calc(50% - 260px / 2);
