@@ -1,10 +1,15 @@
 import type { GatsbyConfig } from "gatsby";
+import adapter from "gatsby-adapter-netlify";
 
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
 const config: GatsbyConfig = {
+  adapter: adapter({
+    excludeDatastoreFromEngineFunction: false,
+    imageCDN: true,
+  }),
   siteMetadata: {
     title: "Design Code",
     description: "The best design and code resources on the web.",

@@ -1,0 +1,4 @@
+[images]
+remote_images = [
+  "https://images.ctfassets.net/hk8p85i4mug2/.*"
+]
