@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const H1 = styled.h1`
   font-weight: bold;
   font-size: 60px;
+  line-height: 72px;
 
   @media (max-width: 450px) {
     font-size: 34px;

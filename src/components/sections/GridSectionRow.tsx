@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 import { Caption, SmallText } from "../styles/TextStyles";
+import { Link } from "gatsby";
 
 const formatTimestamp = (timestamp: string): string => {
   const [minutes, seconds] = timestamp.split(":").map(Number);
@@ -12,23 +13,26 @@ export const SectionRow: FC<{
   title: string;
   description: string;
   duration: string;
-}> = ({ description, index, duration, title }) => {
+  slug: string;
+}> = ({ description, index, duration, title, slug }) => {
   const timestampAria = formatTimestamp(duration);
   const randomProgress = Math.floor(Math.random() * 100);
   return (
-    <Wrapper>
-      <Index>{index}</Index>
-      <TextWrapper>
-        <Title>{title}</Title>
-        <ProgressBar
-          value={randomProgress}
-          max="100"
-          aria-label={`Progress of the video at ${randomProgress}%`}
-        />
-        <Description>{description}</Description>
-      </TextWrapper>
-      <Timestamp dateTime={timestampAria}>{duration}</Timestamp>
-    </Wrapper>
+    <Link to={`/${slug}`}>
+      <Wrapper>
+        <Index>{index}</Index>
+        <TextWrapper>
+          <Title>{title}</Title>
+          <ProgressBar
+            value={randomProgress}
+            max="100"
+            aria-label={`Progress of the video at ${randomProgress}%`}
+          />
+          <Description>{description}</Description>
+        </TextWrapper>
+        <Timestamp dateTime={timestampAria}>{duration}</Timestamp>
+      </Wrapper>
+    </Link>
   );
 };
 

@@ -2,10 +2,9 @@ import React, { FC } from "react";
 import styled from "styled-components";
 import { Caption2, SmallText } from "../styles/TextStyles";
 import { SectionRow } from "./GridSectionRow";
-import { GraphqlData } from "../../pages/course";
 
 type CourseSections =
-  GraphqlData["allContentfulCourse"]["edges"][number]["node"]["sections"];
+  Queries.CoursePageQuery["allContentfulCourse"]["edges"][number]["node"]["sections"];
 
 export const GridSection: FC<{ sections: CourseSections }> = ({ sections }) => {
   return (
@@ -16,9 +15,19 @@ export const GridSection: FC<{ sections: CourseSections }> = ({ sections }) => {
         can easily follow in a cohesive way.
       </Description>
       <Grid>
-        {sections.map((section, index) => (
-          <SectionRow key={section.title} {...section} index={index + 1} />
-        ))}
+        {sections?.map(
+          (section, index) =>
+            section && (
+              <SectionRow
+                key={section?.title || index}
+                title={section.title!}
+                description={section.description!}
+                duration={section.duration!}
+                slug={section.slug!}
+                index={index + 1}
+              />
+            )
+        )}
       </Grid>
     </Wrapper>
   );

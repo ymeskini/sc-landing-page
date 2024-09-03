@@ -18,7 +18,7 @@ import { FlutterBuild } from "../components/flutter-build";
 import { GridSection } from "../components/sections/GridSection";
 
 export const query = graphql`
-  query CoursePageQuery {
+  query CoursePage {
     allContentfulCourse {
       edges {
         node {
@@ -35,6 +35,7 @@ export const query = graphql`
             title
             description
             duration
+            slug
           }
         }
       }
@@ -42,26 +43,9 @@ export const query = graphql`
   }
 `;
 
-export type GraphqlData = {
-  allContentfulCourse: {
-    edges: {
-      node: {
-        title: string;
-        description: string;
-        illustration: {
-          gatsbyImageData: IGatsbyImageData;
-        };
-        sections: {
-          title: string;
-          description: string;
-          duration: string;
-        }[];
-      };
-    }[];
-  };
-};
 
-const CoursePage: React.FC<PageProps<GraphqlData>> = ({ data }) => {
+
+const CoursePage: React.FC<PageProps<Queries.CoursePageQuery>> = ({ data }) => {
   const { width } = useWindowSize();
   const {
     allContentfulCourse: { edges },
