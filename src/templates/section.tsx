@@ -25,13 +25,13 @@ export const query = graphql`
 
 const SectionPage: FC<
   PageProps<Queries.SectionPageQuery, SectionDataContext>
-> = ({ pageContext, data: { contentfulSection } }) => {
+> = ({ data: { contentfulSection } }) => {
   return (
     <Wrapper>
       <HeroWrapper>
         {contentfulSection?.illustration?.url && (
           <Illustration
-            src={contentfulSection.illustration.url}
+            src={contentfulSection?.illustration.url}
             alt="Course Section Image"
           />
         )}

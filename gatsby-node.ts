@@ -42,8 +42,3 @@ export const createPages: GatsbyNode["createPages"] = async ({
     });
   }
 };
-
-export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] =
-  ({ actions }) => {
-    actions.printTypeDefinitions({ path: "./schema.graphql" });
-  };

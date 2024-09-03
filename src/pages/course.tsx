@@ -1,6 +1,5 @@
 import * as React from "react";
 import { type HeadFC, type PageProps, graphql } from "gatsby";
-import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image";
 import styled from "styled-components";
 import { useWindowSize } from "react-use";
 
@@ -25,11 +24,7 @@ export const query = graphql`
           title
           description
           illustration {
-            gatsbyImageData(
-              layout: CONSTRAINED
-              placeholder: BLURRED
-              formats: [AUTO, WEBP, AVIF]
-            )
+            url
           }
           sections {
             title
@@ -43,21 +38,18 @@ export const query = graphql`
   }
 `;
 
-
-
 const CoursePage: React.FC<PageProps<Queries.CoursePageQuery>> = ({ data }) => {
   const { width } = useWindowSize();
   const {
     allContentfulCourse: { edges },
   } = data;
   const { title, description, sections, illustration } = edges[0].node;
-  const image = getImage(illustration);
 
   return (
     <Wrapper>
       <HeroWrapper>
         <CourseCard
-          image={<GatsbyImage alt="React Course Image" image={image!} />}
+          image={<img alt="React Course Image" src={illustration?.url!} />}
         />
         <ContentWrapper>
           <Logo size="large" icon="react" />
