@@ -1,15 +1,10 @@
-import type { GatsbyNode } from "gatsby";
-import path from "path";
+const path = require("path");
 
-export const createPages: GatsbyNode["createPages"] = async ({
-  actions,
-  graphql,
-}) => {
-  console.log(actions);
+exports.createPages = async ({ actions, graphql }) => {
   const { createPage } = actions;
   const sectionTemplate = path.resolve(__dirname, "src/templates/section.tsx");
 
-  const { data } = await graphql<Queries.AllCoursesQuery>(`
+  const { data } = await graphql(`
     query AllCourses {
       allContentfulCourse {
         edges {
